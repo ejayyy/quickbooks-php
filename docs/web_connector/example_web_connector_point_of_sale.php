@@ -34,7 +34,7 @@ require_once '../../QuickBooks.php';
 //	a) Your .QWC file
 //	b) The Web Connector
 //	c) The QuickBooks framework
-$user = 'quickbooks';
+$user = 'test_user';
 $pass = 'password';
 
 // Map QuickBooks actions to handler functions
@@ -51,11 +51,7 @@ $errmap = array(
 $hooks = array(
 	);
 
-// Logging level
-//$log_level = QUICKBOOKS_LOG_NORMAL;
-//$log_level = QUICKBOOKS_LOG_VERBOSE;
-//$log_level = QUICKBOOKS_LOG_DEBUG;				
-$log_level = QUICKBOOKS_LOG_DEVELOP;		// Use this level until you're sure everything works!!!
+$log_level = QUICKBOOKS_LOG_DEVELOP;
 
 // What SOAP server you're using 
 //$soapserver = QUICKBOOKS_SOAPSERVER_PHP;			// The PHP SOAP extension, see: www.php.net/soap
@@ -111,25 +107,25 @@ function _quickbooks_pos_customer_add_request($requestID, $user, $action, $ID, $
 			<QBPOSXMLMsgsRq onError="stopOnError">
 				<CustomerAddRq>
 					<CustomerAdd>
-						<CompanyName>ConsoliBYTE, LLC</CompanyName>
-						<EMail>support@ConsoliBYTE.com</EMail>
-						<FirstName>Keith</FirstName>
-						<LastName>Palmer Jr.</LastName>
-						<Phone>860-341-1464</Phone>
-						<Salutation>Mr.</Salutation>
+						<CompanyName>Test Company</CompanyName>
+						<EMail>test@test.com</EMail>
+						<FirstName>EJ</FirstName>
+						<LastName>Ha</LastName>
+						<Phone>000-000-0000</Phone>
+						<Salutation>Ms.</Salutation>
 						<BillAddress>
-							<City>Willington</City>
+							<City>Anaheim</City>
 							<Country>USA</Country>
-							<PostalCode>06279</PostalCode>
-							<State>CT</State>
-							<Street>56 Cowles Road</Street>
+							<PostalCode>92405</PostalCode>
+							<State>CA</State>
+							<Street>404 NotFound ave</Street>
 						</BillAddress>
 						<ShipAddress>
-							<City>Willington</City>
+							<City>Los Angeles</City>
 							<Country>USA</Country>
-							<PostalCode>06279</PostalCode>
-							<State>CT</State>
-							<Street>56 Cowles Road</Street>
+							<PostalCode>90005</PostalCode>
+							<State>CA</State>
+							<Street>56 Test Road</Street>
 						</ShipAddress>
 					</CustomerAdd>
 				</CustomerAddRq>
@@ -151,7 +147,6 @@ function _quickbooks_pos_customer_add_response($requestID, $user, $action, $ID, 
 	//	later. (You'll need to refer to the customer by either ListID or Name 
 	//	in other requests, say, to update the customer or to add an invoice for 
 	//	the customer. 
-	
 	/*
 	mysql_query("UPDATE your_customer_table SET quickbooks_listid = '" . mysql_escape_string($idents['ListID']) . "' WHERE your_customer_ID_field = " . (int) $ID);
 	*/
