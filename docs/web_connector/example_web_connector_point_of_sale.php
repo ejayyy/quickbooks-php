@@ -20,7 +20,7 @@ if (function_exists('date_default_timezone_set'))
 {
 	// * MAKE SURE YOU SET THIS TO THE CORRECT TIMEZONE! *
 	// List of valid timezones is here: http://us3.php.net/manual/en/timezones.php
-	date_default_timezone_set('America/New_York');
+	date_default_timezone_set('America/Los_Angeles');
 }
 
 // Error reporting for easier debugging
@@ -28,7 +28,7 @@ error_reporting(E_ALL | E_STRICT);
 ini_set('display_errors', true);
 
 // Require the framework
-require_once '../QuickBooks.php';
+require_once '../../QuickBooks.php';
 
 // A username and password you'll use in: 
 //	a) Your .QWC file
@@ -76,7 +76,7 @@ $callback_options = array(
 	);
 
 // * MAKE SURE YOU CHANGE THE DATABASE CONNECTION STRING BELOW TO A VALID MYSQL USERNAME/PASSWORD/HOSTNAME *
-$dsn = 'mysql://root:root@localhost/quickbooks_pos_server';
+$dsn = 'mysqli://root:secret@db:3306/qbpos';
 
 if (!QuickBooks_Utilities::initialized($dsn))
 {
@@ -87,7 +87,7 @@ if (!QuickBooks_Utilities::initialized($dsn))
 	QuickBooks_Utilities::createUser($dsn, $user, $pass);
 	
 	// We're going to queue up a request to add a customer, just as a test...
-	$primary_key_of_your_customer = 5;
+	$primary_key_of_your_customer = 2;
 
 	$Queue = new QuickBooks_WebConnector_Queue($dsn);
 	$Queue->enqueue(QUICKBOOKS_ADD_CUSTOMER, $primary_key_of_your_customer);
