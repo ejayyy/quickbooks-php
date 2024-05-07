@@ -22,6 +22,8 @@ services:
         '--collation-server=utf8mb4_unicode_ci',
         '--default-authentication-plugin=mysql_native_password'
       ]
+    volumes:
+      - ./docs/web_connector/example.sql:/docker-entrypoint-initdb.d/schema.sql:ro
 
   nginx:
     image: nginx:1.23.3-alpine
